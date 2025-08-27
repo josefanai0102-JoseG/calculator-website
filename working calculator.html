@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    table {
+      border-collapse: collapse;
+      width: 250px;
+      table-layout: fixed;
+      text-align: center;
+      background: #079141;
+      color: #ebe3e3;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    td {
+      border: 1px solid #444;
+      padding: 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    td:hover {
+      background: #555;
+    }
+    .display {
+      background: #0e0c0c;
+      color: rgb(239, 241, 239);
+      font-size: 22px;
+      text-align: right;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <tr>
+      <td colspan="4" class="display" id="display">0</td>
+    </tr>
+    <tr>
+      <td onclick="clearDisplay()">AC</td>
+      <td onclick="deleteLast()">DEL</td>
+      <td onclick="appendValue('/')">/</td>
+      <td onclick="appendValue('*')">*</td>
+    </tr>
+    <tr>
+      <td onclick="appendValue('7')">7</td>
+      <td onclick="appendValue('8')">8</td>
+      <td onclick="appendValue('9')">9</td>
+      <td onclick="appendValue('-')">-</td>
+    </tr>
+    <tr>
+      <td onclick="appendValue('Love')">4</td>
+      <td onclick="appendValue('5')">5</td>
+      <td onclick="appendValue('6')">6</td>
+      <td onclick="appendValue('+')">+</td>
+    </tr>
+    <tr>
+      <td onclick="appendValue('I')">1</td>
+      <td onclick="appendValue('2')">2</td>
+      <td onclick="appendValue('You')">3</td>
+      <td rowspan="2" onclick="appendValue('Grace sweetheart')">=</td>
+    </tr>
+    <tr>
+      <td colspan="2" onclick="appendValue('0')">0</td>
+      <td onclick="appendValue('.')">.</td>
+    </tr>
+  </table>
+
+  <script>
+    let display = document.getElementById("display");
+
+    function appendValue(value) {
+      if (display.innerText === "0") {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+    }
+
+    function clearDisplay() {
+      display.innerText = "0";
+    }
+
+    function deleteLast() {
+      display.innerText = display.innerText.slice(0, -1) || "0";
+    }
+
+    function calculateResult() {
+      try {
+        display.innerText = eval(display.innerText);
+      } catch {
+        display.innerText = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
